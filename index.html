@@ -20,15 +20,18 @@
       /* 2. GAMBAR KHUSUS UNTUK HP & TABLET BERDIRI (PORTRAIT) */
       @media screen and (orientation: portrait) { 
         body { 
-          background-size: cover; 
-          /* Tautan gambar HP yang baru Anda berikan dimasukkan ke sini */
+          /* MENGGUNAKAN 100% 100% AGAR GAMBAR BAWAH (PETA/TANGGAL) TIDAK TERPOTONG SAMA SEKALI */
+          background-size: 100% 100%; 
           background-image: url('https://i.ibb.co.com/60RmP3g9/2.png'); 
         } 
       }
 
-      /* Posisi Container Utama (Bisa diubah jika tulisan terlalu atas/bawah) */
+      /* Posisi Container Utama */
       .content-wrapper { text-align: center; width: 100%; padding: 0 5%; box-sizing: border-box; margin-top: 36vh; }
-      @media screen and (orientation: portrait) { .content-wrapper { margin-top: 40vw; } }
+      @media screen and (orientation: portrait) { 
+        /* MENURUNKAN TULISAN KE BAWAH AGAR TIDAK MENUTUPI LOGO HIBUALAMO */
+        .content-wrapper { margin-top: 34vh; } 
+      }
 
       #input-container { display: block; margin-top: 5vh; }
       .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 10px; width: 90%; max-width: 550px; margin: 0 auto; }
