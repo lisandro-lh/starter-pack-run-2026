@@ -3,8 +3,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Verifikasi Starter Pack Run 2026</title>
-    <!-- Mengimpor font Bungee Inline (Hasil), Russo One (Input/Tombol bergaya solid sport), dan Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Russo+One&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <!-- Mengimpor font Montserrat tebal -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
     <style>
       body {
         margin: 0; padding: 0; height: 100vh; height: 100dvh; 
@@ -20,6 +20,7 @@
       /* 2. GAMBAR KHUSUS UNTUK HP & TABLET BERDIRI (PORTRAIT) */
       @media screen and (orientation: portrait) { 
         body { 
+          /* MENGGUNAKAN 100% 100% AGAR GAMBAR BAWAH (PETA/TANGGAL) TIDAK TERPOTONG SAMA SEKALI */
           background-size: 100% 100%; 
           background-image: url('https://i.ibb.co.com/60RmP3g9/2.png'); 
         } 
@@ -28,153 +29,61 @@
       /* Posisi Container Utama */
       .content-wrapper { text-align: center; width: 100%; padding: 0 5%; box-sizing: border-box; margin-top: 36vh; }
       @media screen and (orientation: portrait) { 
+        /* MENURUNKAN TULISAN KE BAWAH AGAR TIDAK MENUTUPI LOGO HIBUALAMO */
         .content-wrapper { margin-top: 34vh; } 
       }
 
       #input-container { display: block; margin-top: 5vh; }
       .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 10px; width: 90%; max-width: 550px; margin: 0 auto; }
       
-      /* ========================================================
-         BAGIAN INPUT, TOMBOL, & HINT (FONT: RUSSO ONE, TEMA PLN)
-         ======================================================== */
-      .input-bip { 
-        background: rgba(255, 255, 255, 0.9); 
-        border: 3px solid #FFCC00; /* Kuning PLN */
-        border-radius: 20px; 
-        color: #00558E; /* Biru PLN */
-        font-size: clamp(18px, 4vw, 30px); 
-        text-align: center; 
-        padding: 15px 20px; 
-        flex: 1; 
-        outline: none; 
-        text-transform: uppercase; 
-        font-family: 'Russo One', sans-serif; 
-        backdrop-filter: blur(5px); 
-        transition: 0.3s; 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
-      }
-      .input-bip::placeholder { 
-        color: rgba(0, 85, 142, 0.5); 
-        font-size: clamp(14px, 3vw, 22px); 
-        -webkit-text-stroke: 0px; 
-      }
-      .input-bip:focus { 
-        border-color: #00A2E9; /* Biru Cyan PLN */
-        background: #ffffff; 
-      }
+      /* Ukuran Input Fleksibel */
+      .input-bip { background: rgba(255, 255, 255, 0.6); border: 3px solid #00558E; border-radius: 20px; color: #00558E; font-size: clamp(18px, 4vw, 30px); font-weight: 900; text-align: center; padding: 15px 20px; flex: 1; outline: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+      .input-bip::placeholder { color: rgba(0, 31, 63, 0.6); font-size: clamp(14px, 3vw, 22px); font-weight: 800; }
+      .input-bip:focus { border-color: #02680BE; background: rgba(255, 255, 255, 0.9); }
 
-      .go-btn { 
-        background: #FFCC00; /* Kuning PLN */
-        border: 3px solid #00558E; /* Biru PLN */
-        border-radius: 20px; 
-        color: #00558E; 
-        font-size: clamp(16px, 4vw, 25px); 
-        padding: 0 25px; 
-        cursor: pointer; 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
-        transition: 0.3s; 
-        font-family: 'Russo One', sans-serif; 
-        letter-spacing: 1px;
-      }
-      .go-btn:hover { 
-        background: #00558E; 
-        color: #FFCC00; 
-        border-color: #FFCC00; 
-      }
+      .go-btn { background: #02680BE; border: 3px solid #00558E; border-radius: 20px; color: #00558E; font-size: clamp(16px, 4vw, 25px); font-weight: 900; padding: 0 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; }
+      .go-btn:hover { background: #00558E; color: #02680BE; border-color: #ffffff; }
       
-      .hint-text { 
-        font-size: clamp(12px, 2.5vw, 16px); 
-        margin-top: 15px; 
-        color: #FFCC00; /* Kuning PLN */
-        font-family: 'Russo One', sans-serif;
-        -webkit-text-stroke: 0.5px #00558E; 
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); 
-      }
+      .hint-text { font-size: clamp(12px, 2.5vw, 16px); margin-top: 15px; color: #00558E; font-weight: 900; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
 
-      /* ========================================================
-         BAGIAN HASIL (TETAP BUNGEE INLINE SEPERTI SEBELUMNYA)
-         ======================================================== */
       #result-container { display: none; width: 100%; display: flex; flex-direction: column; gap: 15px; align-items: center; }
       
+      /* Styling untuk grup dan label (NOMOR PESERTA, NAMA, JK) */
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; }
-      .result-label { 
-        font-size: clamp(12px, 3vw, 18px); 
-        color: #FFCC00; /* Kuning PLN */
-        font-family: 'Russo One', sans-serif;
-        margin-bottom: 6px; 
-        text-transform: uppercase; 
-        letter-spacing: 1px; 
-        -webkit-text-stroke: 1px #00558E; 
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); 
-      }
+      .result-label { font-size: clamp(12px, 3vw, 18px); font-weight: 900; color: #00558E; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
       
+      /* Kotak transparan fleksibel yang menyesuaikan ukuran teks (Glassmorphism) */
       .glass-box {
         background: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 2px solid black; 
+        border: 2px solid rgba(255, 255, 255, 0.9);
         border-radius: 12px;
         padding: 8px 30px;
         width: fit-content; 
         max-width: 95%;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 0 10px rgba(255,255,255,0.15);
+        color: #ffffff;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
         word-wrap: break-word;
       }
-      .box-cyan { border-color: black; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), inset 0 0 10px rgba(255,255,255,0.15); }
+      
+      /* Border khusus nomor peserta warna cyan/biru muda */
+      .box-cyan { border-color: #00f0ff; box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25), inset 0 0 10px rgba(255,255,255,0.15); }
 
-      /* HASIL INTI: Bungee Inline & Warna Hitam (Tidak Diubah) */
-      .result-bip { 
-        font-family: 'Bungee Inline', cursive; 
-        font-size: clamp(50px, 10vw, 110px); 
-        margin: 0; line-height: 1.1; letter-spacing: 2px; 
-        color: black; 
-        -webkit-text-stroke: 2px white; 
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-      }
-      .result-nama { 
-        font-family: 'Bungee Inline', cursive; 
-        font-size: clamp(20px, 5vw, 55px); 
-        margin: 0; text-transform: uppercase; line-height: 1.2; 
-        color: black; 
-        -webkit-text-stroke: 1.5px white; 
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-      }
-      .result-jk { 
-        font-family: 'Bungee Inline', cursive; 
-        font-size: clamp(14px, 3.5vw, 35px); 
-        margin: 0; text-transform: uppercase; line-height: 1.2; 
-        color: black; 
-        -webkit-text-stroke: 1px white; 
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-      }
+      /* ========================================================
+         UKURAN TEKS SUPER FLEKSIBEL (HP -> TABLET -> LAPTOP)
+         Menggunakan Clamp (Minimal, Ideal, Maksimal)
+         ======================================================== */
+      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(50px, 10vw, 110px); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: 2px; }
+      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(20px, 5vw, 55px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
+      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(14px, 3.5vw, 35px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
 
-      /* LOADING, NOT-FOUND, & TOMBOL RESET */
-      .loading, .not-found { 
-        font-size: clamp(16px, 3vw, 24px); 
-        font-family: 'Russo One', sans-serif;
-        margin-top: 40px; 
-        display: none; 
-        letter-spacing: 1px; 
-        color: #FFCC00; 
-        -webkit-text-stroke: 1px #00558E; 
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); 
-      }
-      .not-found { color: #d90000; -webkit-text-stroke: 1px white; } 
+      .loading, .not-found { font-size: clamp(16px, 3vw, 24px); font-weight: 900; margin-top: 40px; display: none; letter-spacing: 1px; color: #00558E; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
+      .not-found { color: #d90000; } 
 
-      .reset-btn { 
-        position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); 
-        background: #FFCC00; /* Kuning PLN */
-        border: 2px solid #00558E; 
-        border-radius: 12px; 
-        color: #00558E; 
-        padding: 10px 20px; 
-        font-size: clamp(12px, 2vw, 16px); 
-        cursor: pointer; display: none; 
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; 
-        font-family: 'Russo One', sans-serif; 
-        z-index: 10; 
-      }
-      .reset-btn:hover { background: #00558E; color: #FFCC00; border-color: #FFCC00; }
+      .reset-btn { position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); background: #00558E; border: 2px solid #ffffff; border-radius: 12px; color: #ffffff; padding: 10px 20px; font-size: clamp(12px, 2vw, 16px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
+      .reset-btn:hover { background: #02680BE; color: #00558E; border-color: #00558E; }
     </style>
   </head>
   <body>
