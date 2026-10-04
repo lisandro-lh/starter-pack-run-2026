@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Verifikasi Starter Pack Run 2026</title>
+    <!-- Mengimpor font Montserrat tebal -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0; padding: 0; height: 100vh; height: 100dvh; 
+        background-color: #00479b; 
+        background-image: url('https://i.ibb.co.com/VY8yvqZV/Display-pengambilan-starter-pack-1.png');
+        background-size: contain; background-position: center top; background-repeat: no-repeat;
+        font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column;
+        justify-content: flex-start; align-items: center; overflow: hidden;
+      }
+      
+      /* Mode HP: background full menutupi layar */
+      @media screen and (orientation: portrait) { body { background-size: cover; } }
+
+      .content-wrapper { text-align: center; color: #001f3f; text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9); width: 100%; padding: 0 5%; box-sizing: border-box; margin-top: 42vh; }
+      @media screen and (orientation: portrait) { .content-wrapper { margin-top: 30vw; } }
+
+      #input-container { display: block; }
+      .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 10px; width: 90%; max-width: 550px; margin: 0 auto; }
+      
+      .input-bip { background: rgba(255, 255, 255, 0.6); border: 3px solid #001f3f; border-radius: 20px; color: #001f3f; font-size: clamp(20px, 4vmin, 35px); font-weight: 900; text-align: center; padding: 15px 20px; flex: 1; outline: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+      .input-bip::placeholder { color: rgba(0, 31, 63, 0.6); font-size: clamp(16px, 3vmin, 25px); font-weight: 800; }
+      .input-bip:focus { border-color: #ffcc00; background: rgba(255, 255, 255, 0.9); }
+
+      .go-btn { background: #ffcc00; border: 3px solid #001f3f; border-radius: 20px; color: #001f3f; font-size: clamp(16px, 4vmin, 25px); font-weight: 900; padding: 0 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; }
+      .go-btn:hover { background: #001f3f; color: #ffcc00; border-color: #ffffff; }
+      
+      .hint-text { font-size: clamp(12px, 2.5vmin, 16px); margin-top: 15px; color: #001f3f; font-weight: 900; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
+
+      #result-container { display: none; }
+      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(60px, 15vmin, 180px); font-weight: 900; color: #001f3f; margin-bottom: 0px; letter-spacing: 3px; text-shadow: 4px 4px 15px rgba(255, 255, 255, 0.9); line-height: 1; }
+      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(30px, 7vmin, 80px); font-weight: 900; margin-bottom: 5px; text-transform: uppercase; color: #001f3f; word-wrap: break-word; padding: 0 10px; }
+      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(16px, 4vmin, 40px); font-weight: 900; text-transform: uppercase; color: #001f3f; }
+
+      .loading, .not-found { font-size: clamp(18px, 3vmin, 25px); font-weight: 900; margin-top: 20px; display: none; letter-spacing: 1px; color: #001f3f; }
+      .not-found { color: #d90000; } 
+
+      .reset-btn { position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); background: #001f3f; border: 2px solid #ffffff; border-radius: 12px; color: #ffffff; padding: 10px 20px; font-size: clamp(14px, 2vmin, 18px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
+      .reset-btn:hover { background: #ffcc00; color: #001f3f; border-color: #001f3f; }
+    </style>
+  </head>
+  <body>
+
+    <button id="btnReset" class="reset-btn" onclick="ulangCarian()">🔄 RESET</button>
+
+    <div class="content-wrapper">
+      <div id="input-container">
+        <div class="input-wrapper">
+          <input type="text" id="inputBIP" class="input-bip" placeholder="NOMOR BIP" onkeypress="semakEnter(event)" inputmode="numeric">
+          <button class="go-btn" onclick="jalankanPencarian()">GO</button>
+        </div>
+        <div class="hint-text">Ketik nomor lalu tekan <b>ENTER</b> atau <b>GO</b></div>
+      </div>
+
+      <div id="loading" class="loading">MENCARI DATA...</div>
+      <div id="not-found" class="not-found">DATA TIDAK DITEMUKAN</div>
+
+      <div id="result-container">
+        <div id="result-bip" class="result-bip">0000</div>
+        <div id="result-nama" class="result-nama">NAMA PESERTA</div>
+        <div id="result-jk" class="result-jk">JENIS KELAMIN</div>
+      </div>
+    </div>
+
+    <script>
+      // URL Web App Google Apps Script Anda yang sudah dimasukkan
+      const API_URL = "https://script.google.com/macros/s/AKfycbxVaXopX3kfSLJ9V3fjcaLJY9LDikrokGlxhFg1IdTYjZVpr6nTPxcYBGFCZHSuwsc6/exec";
+
+      function semakEnter(event) {
+        if (event.key === "Enter" || event.keyCode === 13) {
+          event.preventDefault(); 
+          document.getElementById('inputBIP').blur(); 
+          jalankanPencarian();
+        }
+      }
+
+      function jalankanPencarian() {
+        let bip = document.getElementById('inputBIP').value.trim();
+        if (bip === "") return;
+
+        document.getElementById('inputBIP').blur();
+        document.getElementById('input-container').style.display = 'none';
+        document.getElementById('not-found').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+
+        // Menarik data dari Google Spreadsheet via API
+        fetch(API_URL + "?bip=" + encodeURIComponent(bip))
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('btnReset').style.display = 'block'; 
+
+            if (data.found) {
+              document.getElementById('result-bip').innerText = bip.toUpperCase();
+              document.getElementById('result-nama').innerText = String(data.nama || "-").toUpperCase();
+              document.getElementById('result-jk').innerText = String(data.jk || "-").toUpperCase();
+              
+              document.getElementById('result-container').style.display = 'block';
+            } else {
+              document.getElementById('not-found').style.display = 'block';
+            }
+          })
+          .catch(error => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('btnReset').style.display = 'block';
+            alert("Terjadi kesalahan jaringan.");
+            console.error(error);
+          });
+      }
+
+      function ulangCarian() {
+        document.getElementById('inputBIP').value = ""; 
+        document.getElementById('result-container').style.display = 'none';
+        document.getElementById('not-found').style.display = 'none';
+        document.getElementById('btnReset').style.display = 'none';
+        
+        document.getElementById('input-container').style.display = 'block';
+        document.getElementById('inputBIP').focus(); 
+      }
+    </script>
+  </body>
+</html>
