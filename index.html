@@ -9,37 +9,45 @@
       body {
         margin: 0; padding: 0; height: 100vh; height: 100dvh; 
         background-color: #00479b; 
-        /* Pastikan URL gambar di bawah ini adalah background Anda yang POLOS (tanpa teks bawaan) */
-        background-image: url('https://i.ibb.co.com/8n4QbRpg/Gemini-Generated-Image-mp2mi3mp2mi3mp2m.jpg');
+        
+        /* 1. GAMBAR UNTUK LAPTOP / TV (LAYAR MENDATAR) */
+        background-image: url('https://i.ibb.co.com/VY8yvqZV/Display-pengambilan-starter-pack-1.png');
         background-size: contain; background-position: center top; background-repeat: no-repeat;
         font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column;
         justify-content: flex-start; align-items: center; overflow: hidden;
       }
       
-      /* Mode HP: background full menutupi layar */
-      @media screen and (orientation: portrait) { body { background-size: cover; } }
+      /* 2. GAMBAR KHUSUS UNTUK HP & TABLET BERDIRI (PORTRAIT) */
+      @media screen and (orientation: portrait) { 
+        body { 
+          background-size: cover; 
+          /* Tautan gambar HP yang baru Anda berikan dimasukkan ke sini */
+          background-image: url('https://i.ibb.co.com/LDmNWkGm/Poster-Hibua-Lamo-Eco-Energy-Run-2026.png'); 
+        } 
+      }
 
-      /* Posisi dinaikkan sedikit agar muat semua box */
+      /* Posisi Container Utama (Bisa diubah jika tulisan terlalu atas/bawah) */
       .content-wrapper { text-align: center; width: 100%; padding: 0 5%; box-sizing: border-box; margin-top: 36vh; }
-      @media screen and (orientation: portrait) { .content-wrapper { margin-top: 30vw; } }
+      @media screen and (orientation: portrait) { .content-wrapper { margin-top: 40vw; } }
 
       #input-container { display: block; margin-top: 5vh; }
       .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 10px; width: 90%; max-width: 550px; margin: 0 auto; }
       
-      .input-bip { background: rgba(255, 255, 255, 0.6); border: 3px solid #001f3f; border-radius: 20px; color: #001f3f; font-size: clamp(20px, 4vmin, 35px); font-weight: 900; text-align: center; padding: 15px 20px; flex: 1; outline: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-      .input-bip::placeholder { color: rgba(0, 31, 63, 0.6); font-size: clamp(16px, 3vmin, 25px); font-weight: 800; }
+      /* Ukuran Input Fleksibel */
+      .input-bip { background: rgba(255, 255, 255, 0.6); border: 3px solid #001f3f; border-radius: 20px; color: #001f3f; font-size: clamp(18px, 4vw, 30px); font-weight: 900; text-align: center; padding: 15px 20px; flex: 1; outline: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+      .input-bip::placeholder { color: rgba(0, 31, 63, 0.6); font-size: clamp(14px, 3vw, 22px); font-weight: 800; }
       .input-bip:focus { border-color: #ffcc00; background: rgba(255, 255, 255, 0.9); }
 
-      .go-btn { background: #ffcc00; border: 3px solid #001f3f; border-radius: 20px; color: #001f3f; font-size: clamp(16px, 4vmin, 25px); font-weight: 900; padding: 0 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; }
+      .go-btn { background: #ffcc00; border: 3px solid #001f3f; border-radius: 20px; color: #001f3f; font-size: clamp(16px, 4vw, 25px); font-weight: 900; padding: 0 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; }
       .go-btn:hover { background: #001f3f; color: #ffcc00; border-color: #ffffff; }
       
-      .hint-text { font-size: clamp(12px, 2.5vmin, 16px); margin-top: 15px; color: #001f3f; font-weight: 900; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
+      .hint-text { font-size: clamp(12px, 2.5vw, 16px); margin-top: 15px; color: #001f3f; font-weight: 900; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
 
       #result-container { display: none; width: 100%; display: flex; flex-direction: column; gap: 15px; align-items: center; }
       
       /* Styling untuk grup dan label (NOMOR PESERTA, NAMA, JK) */
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; }
-      .result-label { font-size: clamp(14px, 3.5vmin, 20px); font-weight: 900; color: #001f3f; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
+      .result-label { font-size: clamp(12px, 3vw, 18px); font-weight: 900; color: #001f3f; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
       
       /* Kotak transparan fleksibel yang menyesuaikan ukuran teks (Glassmorphism) */
       .glass-box {
@@ -49,7 +57,7 @@
         border: 2px solid rgba(255, 255, 255, 0.9);
         border-radius: 12px;
         padding: 8px 30px;
-        width: fit-content; /* Ini membuat border menyesuaikan panjang teks */
+        width: fit-content; 
         max-width: 95%;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 0 10px rgba(255,255,255,0.15);
         color: #ffffff;
@@ -60,14 +68,18 @@
       /* Border khusus nomor peserta warna cyan/biru muda */
       .box-cyan { border-color: #00f0ff; box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25), inset 0 0 10px rgba(255,255,255,0.15); }
 
-      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(45px, 12vmin, 90px); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: 2px; }
-      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(22px, 6vmin, 45px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
-      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(16px, 4.5vmin, 30px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
+      /* ========================================================
+         UKURAN TEKS SUPER FLEKSIBEL (HP -> TABLET -> LAPTOP)
+         Menggunakan Clamp (Minimal, Ideal, Maksimal)
+         ======================================================== */
+      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(50px, 10vw, 110px); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: 2px; }
+      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(20px, 5vw, 55px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
+      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(14px, 3.5vw, 35px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
 
-      .loading, .not-found { font-size: clamp(18px, 3vmin, 25px); font-weight: 900; margin-top: 40px; display: none; letter-spacing: 1px; color: #001f3f; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
+      .loading, .not-found { font-size: clamp(16px, 3vw, 24px); font-weight: 900; margin-top: 40px; display: none; letter-spacing: 1px; color: #001f3f; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
       .not-found { color: #d90000; } 
 
-      .reset-btn { position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); background: #001f3f; border: 2px solid #ffffff; border-radius: 12px; color: #ffffff; padding: 10px 20px; font-size: clamp(14px, 2vmin, 18px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
+      .reset-btn { position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); background: #001f3f; border: 2px solid #ffffff; border-radius: 12px; color: #ffffff; padding: 10px 20px; font-size: clamp(12px, 2vw, 16px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
       .reset-btn:hover { background: #ffcc00; color: #001f3f; border-color: #001f3f; }
     </style>
   </head>
@@ -81,30 +93,27 @@
           <input type="text" id="inputBIP" class="input-bip" placeholder="NOMOR BIP" onkeypress="semakEnter(event)" inputmode="numeric">
           <button class="go-btn" onclick="jalankanPencarian()">GO</button>
         </div>
-        <!-- Tulisan bawah kolom input sudah diubah di sini -->
-        <div class="hint-text">Masukkan nomor BIB kamu...</div>
+        <div class="hint-text">isi ngana pe nomor bip dulu e...</div>
       </div>
 
-      <!-- Tulisan saat loading mencari data sudah diubah di sini -->
-      <div id="loading" class="loading">Sabar ya, lagi cari data kamu...</div>
+      <div id="loading" class="loading">Sabar e, kita da cari ngana pe data...</div>
       <div id="not-found" class="not-found">DATA TIDAK DITEMUKAN</div>
 
-      <!-- Container hasil dibuat display none dari awal lewat JS -->
       <div id="result-wrapper" style="display: none;">
         <div id="result-container">
           
           <div class="result-group">
-            <div class="result-label">NOMOR PESERTA</div>
+            <div class="result-label">Ngana Pe Nomor</div>
             <div id="result-bip" class="glass-box box-cyan result-bip">0000</div>
           </div>
           
           <div class="result-group">
-            <div class="result-label">NAMA LENGKAP</div>
+            <div class="result-label">Ngana Pe Nama</div>
             <div id="result-nama" class="glass-box result-nama">NAMA PESERTA</div>
           </div>
           
           <div class="result-group">
-            <div class="result-label">JENIS KELAMIN</div>
+            <div class="result-label">Laki kah Perempuan?</div>
             <div id="result-jk" class="glass-box result-jk">JENIS KELAMIN</div>
           </div>
 
