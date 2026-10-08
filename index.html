@@ -36,54 +36,53 @@
       #input-container { display: block; margin-top: 5vh; }
       .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 10px; width: 90%; max-width: 550px; margin: 0 auto; }
       
-      /* Ukuran Input Fleksibel */
-      .input-bip { background: rgba(255, 255, 255, 0.6); border: 3px solid #10a0e3; border-radius: 20px; color: #10a0e3; font-size: clamp(18px, 4vw, 30px); font-weight: 900; text-align: center; padding: 15px 20px; flex: 1; outline: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-      .input-bip::placeholder { color: rgba(0, 31, 63, 0.6); font-size: clamp(14px, 3vw, 22px); font-weight: 800; }
-      .input-bip:focus { border-color: #02680BE; background: rgba(255, 255, 255, 0.9); }
+      /* Ukuran Input Fleksibel dengan nuansa Biru Dongker & Hitam */
+      .input-bip { background: rgba(255, 255, 255, 0.85); border: 3px solid #0F172A; border-radius: 20px; color: #0F172A; font-size: clamp(18px, 4vw, 30px); font-weight: 900; text-align: center; padding: 15px 20px; flex: 1; outline: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+      .input-bip::placeholder { color: rgba(15, 23, 42, 0.6); font-size: clamp(14px, 3vw, 22px); font-weight: 800; }
+      .input-bip:focus { border-color: #000000; background: rgba(255, 255, 255, 1); }
 
-      .go-btn { background: #02680BE; border: 3px solid #10a0e3; border-radius: 20px; color: #10a0e3; font-size: clamp(16px, 4vw, 25px); font-weight: 900; padding: 0 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; }
-      .go-btn:hover { background: #10a0e3; color: #02680BE; border-color: #c8e3e1; }
+      .go-btn { background: #0F172A; border: 3px solid #000000; border-radius: 20px; color: #FFFFFF; font-size: clamp(16px, 4vw, 25px); font-weight: 900; padding: 0 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; }
+      .go-btn:hover { background: #FFFFFF; color: #0F172A; border-color: #0F172A; }
       
-      .hint-text { font-size: clamp(12px, 2.5vw, 16px); margin-top: 15px; color: #10a0e3; font-weight: 900; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
+      .hint-text { font-size: clamp(12px, 2.5vw, 16px); margin-top: 15px; color: #FFFFFF; font-weight: 900; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); }
 
       #result-container { display: none; width: 100%; display: flex; flex-direction: column; gap: 15px; align-items: center; }
       
       /* Styling untuk grup dan label (NOMOR PESERTA, NAMA, JK) */
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; }
-      .result-label { font-size: clamp(12px, 3vw, 18px); font-weight: 900; color: #10a0e3; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
+      .result-label { font-size: clamp(12px, 3vw, 18px); font-weight: 900; color: #FFFFFF; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); }
       
-      /* Kotak transparan fleksibel yang menyesuaikan ukuran teks (Glassmorphism) */
+      /* Kotak transparan fleksibel (Glassmorphism) dengan font warna Biru Dongker & Hitam */
       .glass-box {
-        background: rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.9);
+        border: 2px solid #0F172A;
         border-radius: 12px;
         padding: 8px 30px;
         width: fit-content; 
         max-width: 95%;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 0 10px rgba(255,255,255,0.15);
-        color: #c8e3e1;
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.25), inset 0 0 10px rgba(255,255,255,0.5);
+        color: #0F172A;
+        text-shadow: none;
         word-wrap: break-word;
       }
       
-      /* Border khusus nomor peserta warna cyan/biru muda */
-      .box-cyan { border-color: #00f0ff; box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25), inset 0 0 10px rgba(255,255,255,0.15); }
+      /* Border khusus nomor peserta */
+      .box-cyan { border-color: #000000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255,255,255,0.5); }
 
       /* ========================================================
          UKURAN TEKS SUPER FLEKSIBEL (HP -> TABLET -> LAPTOP)
-         Menggunakan Clamp (Minimal, Ideal, Maksimal)
          ======================================================== */
-      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(50px, 10vw, 110px); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: 2px; }
-      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(20px, 5vw, 55px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
-      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(14px, 3.5vw, 35px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; }
+      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(50px, 10vw, 110px); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: 2px; color: #0F172A; }
+      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(20px, 5vw, 55px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; color: #0F172A; }
+      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(14px, 3.5vw, 35px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; color: #0F172A; }
 
-      .loading, .not-found { font-size: clamp(16px, 3vw, 24px); font-weight: 900; margin-top: 40px; display: none; letter-spacing: 1px; color: #10a0e3; text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9); }
-      .not-found { color: #d90000; } 
+      .loading, .not-found { font-size: clamp(16px, 3vw, 24px); font-weight: 900; margin-top: 40px; display: none; letter-spacing: 1px; color: #FFFFFF; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); }
+      .not-found { color: #FF4D4D; } 
 
-      .reset-btn { position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); background: #10a0e3; border: 2px solid #c8e3e1; border-radius: 12px; color: #c8e3e1; padding: 10px 20px; font-size: clamp(12px, 2vw, 16px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
-      .reset-btn:hover { background: #02680BE; color: #10a0e3; border-color: #10a0e3; }
+      .reset-btn { position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); background: #0F172A; border: 2px solid #FFFFFF; border-radius: 12px; color: #FFFFFF; padding: 10px 20px; font-size: clamp(12px, 2vw, 16px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
+      .reset-btn:hover { background: #FFFFFF; color: #0F172A; border-color: #0F172A; }
     </style>
   </head>
   <body>
