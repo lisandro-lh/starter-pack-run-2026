@@ -3,14 +3,11 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Verifikasi Starter Pack Run 2026</title>
-    <!-- Mengimpor font Montserrat untuk teks biasa, dan Bebas Neue untuk kotak hasil agar mirip gambar -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
     <style>
       body {
         margin: 0; padding: 0; min-height: 100vh; min-height: 100dvh; 
         background-color: #10a0e3; 
-        
-        /* GAMBAR UNTUK LAPTOP / TV (LAYAR MENDATAR) */
         background-image: url('https://i.ibb.co.com/bRmsMjjY/1.png');
         background-size: contain; background-position: center top; background-repeat: no-repeat;
         font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column;
@@ -18,7 +15,6 @@
         overflow-y: auto; overflow-x: hidden;
       }
       
-      /* GAMBAR KHUSUS UNTUK HP & TABLET BERDIRI (PORTRAIT) */
       @media screen and (orientation: portrait) { 
         body { 
           background-size: 100% 100%; 
@@ -27,24 +23,17 @@
         } 
       }
 
-      /* Posisi Container Utama */
       .content-wrapper { 
         text-align: center; width: 100%; padding: 0 5%; box-sizing: border-box; 
-        margin-top: 38vh; 
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        padding-bottom: 20px; 
+        margin-top: 38vh; display: flex; flex-direction: column; align-items: center; 
+        justify-content: center; padding-bottom: 20px; 
       }
       
-      @media screen and (orientation: portrait) { 
-        .content-wrapper { margin-top: 35vh; padding-bottom: 0; } 
-      }
-      
-      @media screen and (max-height: 500px) and (orientation: landscape) {
-        .content-wrapper { margin-top: 45vh; }
-      }
+      @media screen and (orientation: portrait) { .content-wrapper { margin-top: 35vh; padding-bottom: 0; } }
+      @media screen and (max-height: 500px) and (orientation: landscape) { .content-wrapper { margin-top: 45vh; } }
 
       #input-container, #podium-input-container { display: block; margin-top: 2vh; width: 100%; }
-      #podium-input-container { display: none; } /* Disembunyikan secara default */
+      #podium-input-container { display: none; } 
 
       .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 8px; width: 90%; max-width: 500px; margin: 0 auto; }
       .input-wrapper-col { flex-direction: column; align-items: center; gap: 10px; }
@@ -74,58 +63,23 @@
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 10px; }
       .result-label { font-size: clamp(11px, 2.5vmin, 15px); font-weight: 900; color: #000000; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
       
-      /* Label Khusus Podium agar lebih terbaca */
       .podium-label {
-        font-size: clamp(14px, 3.5vmin, 20px); font-weight: 900; color: #FFFFFF; text-shadow: 1px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px;
+        font-size: clamp(14px, 3.5vmin, 18px); font-weight: 900; color: #FFFFFF; text-shadow: 1px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px;
       }
 
-      /* ========================================================
-         KOTAK HASIL (Meniru Gaya pada Gambar)
-         ======================================================== */
       .glass-box {
-        /* Gradient hijau mint ke biru langit */
-        background: linear-gradient(90deg, #42df9a 0%, #68d8e3 100%);
-        /* Border putih solid */
-        border: 2px solid #FFFFFF;
-        border-radius: 10px;
-        padding: 5px 25px;
-        width: fit-content; 
-        max-width: 95%;
-        /* Bayangan kotak agar terlihat timbul 3D */
-        box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        word-wrap: break-word;
+        background: linear-gradient(90deg, #42df9a 0%, #68d8e3 100%); border: 2px solid #FFFFFF;
+        border-radius: 10px; padding: 5px 25px; width: fit-content; max-width: 95%;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3); word-wrap: break-word;
       }
 
-      /* Teks di dalam kotak hasil menggunakan font Bebas Neue, warna putih, dan bayangan hitam */
-      .result-bip { 
-        font-family: 'Bebas Neue', sans-serif; 
-        font-size: clamp(40px, 12vmin, 90px); 
-        margin: 0; line-height: 1.1; letter-spacing: 3px; 
-        color: #FFFFFF; 
-        text-shadow: 3px 4px 5px rgba(0,0,0,0.6); 
-      }
-      .result-nama { 
-        font-family: 'Bebas Neue', sans-serif; 
-        font-size: clamp(22px, 6.5vmin, 45px); 
-        margin: 0; text-transform: uppercase; line-height: 1.2; letter-spacing: 2px;
-        color: #FFFFFF; 
-        text-shadow: 2px 3px 5px rgba(0,0,0,0.6); 
-      }
-      .result-jk { 
-        font-family: 'Bebas Neue', sans-serif; 
-        font-size: clamp(16px, 4.5vmin, 30px); 
-        margin: 0; text-transform: uppercase; line-height: 1.2; letter-spacing: 1px;
-        color: #FFFFFF; 
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.6); 
-      }
+      .result-bip { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 12vmin, 90px); margin: 0; line-height: 1.1; letter-spacing: 3px; color: #FFFFFF; text-shadow: 3px 4px 5px rgba(0,0,0,0.6); }
+      .result-nama { font-family: 'Bebas Neue', sans-serif; font-size: clamp(22px, 6.5vmin, 45px); margin: 0; text-transform: uppercase; line-height: 1.2; letter-spacing: 2px; color: #FFFFFF; text-shadow: 2px 3px 5px rgba(0,0,0,0.6); }
+      .result-jk { font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 4.5vmin, 30px); margin: 0; text-transform: uppercase; line-height: 1.2; letter-spacing: 1px; color: #FFFFFF; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
 
       .loading, .not-found { font-size: clamp(14px, 3.5vmin, 20px); font-weight: 900; margin-top: 30px; display: none; letter-spacing: 1px; color: #000000; }
 
-      /* Modifikasi untuk menampung dua tombol di kanan bawah */
-      .bottom-controls {
-        position: absolute; bottom: clamp(15px, 3vh, 30px); right: clamp(15px, 3vw, 30px); 
-        display: flex; gap: 10px; z-index: 10;
-      }
+      .bottom-controls { position: absolute; bottom: clamp(15px, 3vh, 30px); right: clamp(15px, 3vw, 30px); display: flex; gap: 10px; z-index: 10; }
 
       .btn-action { 
         background: #FFFFFF; border: none; border-radius: 10px; color: #000000; padding: 8px 15px; 
@@ -134,16 +88,13 @@
       }
       .btn-action:hover { background: #F1F5F9; }
       
-      #btnReset { display: none; } /* Reset disembunyikan di awal */
+      #btnReset { display: none; }
 
-      @media screen and (max-height: 500px) and (orientation: landscape) {
-        .bottom-controls { position: static; margin-top: 20px; justify-content: center; }
-      }
+      @media screen and (max-height: 500px) and (orientation: landscape) { .bottom-controls { position: static; margin-top: 20px; justify-content: center; } }
     </style>
   </head>
   <body>
 
-    <!-- Tombol Navigasi Bawah -->
     <div class="bottom-controls">
       <button id="btnMode" class="btn-action" onclick="toggleMode()">🏆 PODMOD</button>
       <button id="btnReset" class="btn-action" onclick="ulangCarian()">🔄 RESET</button>
@@ -151,7 +102,7 @@
 
     <div class="content-wrapper">
       
-      <!-- MODE NORMAL (RACEPACK) -->
+      <!-- MODE NORMAL -->
       <div id="input-container">
         <div class="input-wrapper">
           <input type="text" id="inputBIP" class="input-bip" placeholder="NOMOR BIP" onkeypress="semakEnter(event)" inputmode="numeric">
@@ -174,7 +125,7 @@
       <div id="loading" class="loading">Sabar e, kita da cari ngana pe data...</div>
       <div id="not-found" class="not-found">DATA TIDAK DITEMUKAN</div>
 
-      <!-- HASIL MODE NORMAL -->
+      <!-- HASIL NORMAL -->
       <div id="result-wrapper" style="display: none; width: 100%;">
         <div id="result-container">
           <div class="result-group">
@@ -192,64 +143,47 @@
         </div>
       </div>
 
-      <!-- HASIL MODE PODIUM -->
+      <!-- HASIL PODIUM -->
       <div id="podium-result-wrapper" style="display: none; width: 100%;">
-        <div id="podium-result-container">
-          <!-- Hasil podium akan di-generate oleh JavaScript di sini -->
-        </div>
+        <div id="podium-result-container"></div>
       </div>
 
     </div>
 
     <script>
       const API_URL = "https://script.google.com/macros/s/AKfycbxVaXopX3kfSLJ9V3fjcaLJY9LDikrokGlxhFg1IdTYjZVpr6nTPxcYBGFCZHSuwsc6/exec";
-      let currentMode = "normal"; // Mode saat ini (normal atau podium)
+      let currentMode = "normal"; 
 
-      // ================= FUNGSI GANTI MODE =================
       function toggleMode() {
         if (currentMode === "normal") {
           currentMode = "podium";
           document.getElementById('btnMode').innerText = "🏃 RACEPACK";
-          
-          // Sembunyikan Normal Mode
           document.getElementById('input-container').style.display = 'none';
           document.getElementById('result-wrapper').style.display = 'none';
-          
-          // Tampilkan Podium Mode
           document.getElementById('podium-input-container').style.display = 'block';
           document.getElementById('podium-result-wrapper').style.display = 'none';
         } else {
           currentMode = "normal";
           document.getElementById('btnMode').innerText = "🏆 PODMOD";
-          
-          // Sembunyikan Podium Mode
           document.getElementById('podium-input-container').style.display = 'none';
           document.getElementById('podium-result-wrapper').style.display = 'none';
-          
-          // Tampilkan Normal Mode
           document.getElementById('input-container').style.display = 'block';
           document.getElementById('result-wrapper').style.display = 'none';
         }
-        
-        // Reset status lainnya
         document.getElementById('btnReset').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
         document.getElementById('loading').style.display = 'none';
       }
 
-      // ================= FUNGSI MODE NORMAL =================
       function semakEnter(event) {
         if (event.key === "Enter" || event.keyCode === 13) {
-          event.preventDefault(); 
-          document.getElementById('inputBIP').blur(); 
-          jalankanPencarian();
+          event.preventDefault(); document.getElementById('inputBIP').blur(); jalankanPencarian();
         }
       }
 
       function jalankanPencarian() {
         let bip = document.getElementById('inputBIP').value.trim();
         if (bip === "") return;
-
         document.getElementById('inputBIP').blur();
         document.getElementById('input-container').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
@@ -261,12 +195,10 @@
           .then(data => {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('btnReset').style.display = 'block'; 
-
             if (data.found) {
               document.getElementById('result-bip').innerText = bip.toUpperCase();
               document.getElementById('result-nama').innerText = String(data.nama || "-").toUpperCase();
               document.getElementById('result-jk').innerText = String(data.jk || "-").toUpperCase();
-              
               document.getElementById('result-wrapper').style.display = 'block';
               document.getElementById('result-container').style.display = 'flex';
             } else {
@@ -276,41 +208,41 @@
           .catch(error => {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('btnReset').style.display = 'block';
-            alert("Terjadi kesalahan jaringan.");
-            console.error(error);
+            alert("Terjadi kesalahan jaringan."); console.error(error);
           });
       }
 
-      // ================= FUNGSI MODE PODIUM =================
       async function jalankanPencarianPodium() {
-        const bips = [
-          document.getElementById('inputPodium1').value.trim(),
-          document.getElementById('inputPodium2').value.trim(),
-          document.getElementById('inputPodium3').value.trim(),
-          document.getElementById('inputPodium4').value.trim()
-        ];
-
-        // Jika semua input kosong, batalkan
-        if (bips.every(b => b === "")) return;
-
-        // Tutup keyboard di HP
-        document.querySelectorAll('#podium-input-container input').forEach(input => input.blur());
-        
-        document.getElementById('podium-input-container').style.display = 'none';
-        document.getElementById('not-found').style.display = 'none';
-        document.getElementById('podium-result-wrapper').style.display = 'none';
-        document.getElementById('loading').style.display = 'block';
-        document.getElementById('btnReset').style.display = 'none';
-
-        // Fetch semua data BIP secara bersamaan
-        const fetchPromises = bips.map(bip => {
-          if (!bip) return Promise.resolve(null);
-          return fetch(API_URL + "?bip=" + encodeURIComponent(bip))
-            .then(res => res.json())
-            .catch(() => ({ found: false })); // Tangani error per request
-        });
-
         try {
+          const input1 = document.getElementById('inputPodium1');
+          const input2 = document.getElementById('inputPodium2');
+          const input3 = document.getElementById('inputPodium3');
+
+          const bips = [
+            input1 ? input1.value.trim() : "",
+            input2 ? input2.value.trim() : "",
+            input3 ? input3.value.trim() : ""
+          ];
+
+          if (bips.every(b => b === "")) return;
+
+          if (input1) input1.blur();
+          if (input2) input2.blur();
+          if (input3) input3.blur();
+          
+          document.getElementById('podium-input-container').style.display = 'none';
+          document.getElementById('not-found').style.display = 'none';
+          document.getElementById('podium-result-wrapper').style.display = 'none';
+          document.getElementById('loading').style.display = 'block';
+          document.getElementById('btnReset').style.display = 'none';
+
+          const fetchPromises = bips.map(bip => {
+            if (!bip) return Promise.resolve(null);
+            return fetch(API_URL + "?bip=" + encodeURIComponent(bip))
+              .then(res => res.json())
+              .catch(() => ({ found: false }));
+          });
+
           const results = await Promise.all(fetchPromises);
           
           document.getElementById('loading').style.display = 'none';
@@ -319,15 +251,33 @@
           let htmlResult = '';
           
           results.forEach((data, index) => {
-            if (!data) return; // Lewati jika input kosong
+            if (!data) return; 
             
             let rank = index + 1;
             let nomorBip = bips[index].toUpperCase();
             let namaPeserta = data.found ? String(data.nama || "-").toUpperCase() : "TIDAK DITEMUKAN";
+            
+            // Logika Penentuan Kategori Berdasarkan Gender (JK) dari API Spreadsheet
+            let gender = data.found ? String(data.jk || "").toUpperCase() : "";
+            let kategori = "";
+            
+            if (gender === "L" || gender === "LAKI-LAKI" || gender.includes("LAKI")) {
+              kategori = "KATEGORI LAKI-LAKI";
+            } else if (gender === "P" || gender === "PEREMPUAN" || gender.includes("PEREMPUAN")) {
+              kategori = "KATEGORI PEREMPUAN";
+            } else if (gender !== "") {
+              kategori = "KATEGORI " + gender; // Jika format lain
+            }
+
+            let titleTeks = `PODIUM ${rank}`;
+            if (kategori !== "") {
+               titleTeks += ` ${kategori}`;
+            }
+            titleTeks += ` - BIP: ${nomorBip}`;
 
             htmlResult += `
               <div class="result-group">
-                <div class="podium-label">PODIUM ${rank} - BIP: ${nomorBip}</div>
+                <div class="podium-label">${titleTeks}</div>
                 <div class="glass-box result-nama">NAMA: ${namaPeserta}</div>
               </div>
             `;
@@ -344,12 +294,11 @@
         } catch (error) {
           document.getElementById('loading').style.display = 'none';
           document.getElementById('btnReset').style.display = 'block';
-          alert("Terjadi kesalahan jaringan.");
+          alert("Terjadi kesalahan jaringan atau sistem.");
           console.error(error);
         }
       }
 
-      // ================= FUNGSI RESET =================
       function ulangCarian() {
         document.getElementById('btnReset').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
@@ -361,10 +310,13 @@
           document.getElementById('input-container').style.display = 'block';
           document.getElementById('inputBIP').focus(); 
         } else {
-          document.getElementById('inputPodium1').value = "";
-          document.getElementById('inputPodium2').value = "";
-          document.getElementById('inputPodium3').value = "";
-          document.getElementById('inputPodium4').value = "";
+          const p1 = document.getElementById('inputPodium1');
+          const p2 = document.getElementById('inputPodium2');
+          const p3 = document.getElementById('inputPodium3');
+          if(p1) p1.value = "";
+          if(p2) p2.value = "";
+          if(p3) p3.value = "";
+          
           document.getElementById('podium-result-wrapper').style.display = 'none';
           document.getElementById('podium-input-container').style.display = 'block';
         }
