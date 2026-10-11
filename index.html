@@ -67,6 +67,13 @@
         font-size: clamp(14px, 3.5vmin, 18px); font-weight: 900; color: #FFFFFF; text-shadow: 1px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px;
       }
 
+      .main-kategori-label {
+        font-size: clamp(20px, 5.5vmin, 32px); font-weight: 900; color: #FFFFFF; 
+        text-shadow: 2px 3px 5px rgba(0,0,0,0.8); margin-bottom: 15px; 
+        text-transform: uppercase; letter-spacing: 2px;
+        background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 10px; border: 2px solid #FFF;
+      }
+
       .glass-box {
         background: linear-gradient(90deg, #42df9a 0%, #68d8e3 100%); border: 2px solid #FFFFFF;
         border-radius: 10px; padding: 5px 25px; width: fit-content; max-width: 95%;
@@ -248,7 +255,28 @@
           document.getElementById('loading').style.display = 'none';
           document.getElementById('btnReset').style.display = 'block';
           
+          // Cari kategori utama berdasarkan data pertama yang ditemukan
+          let mainKategori = "";
+          for (let data of results) {
+            if (data && data.found) {
+              let gender = String(data.jk || "").toUpperCase();
+              if (gender === "L" || gender === "LAKI-LAKI" || gender.includes("LAKI")) {
+                mainKategori = "KATEGORI LAKI-LAKI";
+              } else if (gender === "P" || gender === "PEREMPUAN" || gender.includes("PEREMPUAN")) {
+                mainKategori = "KATEGORI PEREMPUAN";
+              } else if (gender !== "") {
+                mainKategori = "KATEGORI " + gender;
+              }
+              break; 
+            }
+          }
+
           let htmlResult = '';
+          
+          // Cetak Header Kategori di paling atas jika ditemukan
+          if (mainKategori !== "") {
+            htmlResult += `<div class="main-kategori-label">${mainKategori}</div>`;
+          }
           
           results.forEach((data, index) => {
             if (!data) return; 
@@ -256,24 +284,9 @@
             let rank = index + 1;
             let nomorBip = bips[index].toUpperCase();
             let namaPeserta = data.found ? String(data.nama || "-").toUpperCase() : "TIDAK DITEMUKAN";
-            
-            // Logika Penentuan Kategori Berdasarkan Gender (JK) dari API Spreadsheet
-            let gender = data.found ? String(data.jk || "").toUpperCase() : "";
-            let kategori = "";
-            
-            if (gender === "L" || gender === "LAKI-LAKI" || gender.includes("LAKI")) {
-              kategori = "KATEGORI LAKI-LAKI";
-            } else if (gender === "P" || gender === "PEREMPUAN" || gender.includes("PEREMPUAN")) {
-              kategori = "KATEGORI PEREMPUAN";
-            } else if (gender !== "") {
-              kategori = "KATEGORI " + gender; // Jika format lain
-            }
 
-            let titleTeks = `PODIUM ${rank}`;
-            if (kategori !== "") {
-               titleTeks += ` ${kategori}`;
-            }
-            titleTeks += ` - BIP: ${nomorBip}`;
+            // Judul podium sekarang tanpa embel-embel kategori
+            let titleTeks = `PODIUM ${rank} - BIP: ${nomorBip}`;
 
             htmlResult += `
               <div class="result-group">
