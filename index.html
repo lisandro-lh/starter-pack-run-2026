@@ -36,7 +36,16 @@
       #podium-input-container { display: none; } 
 
       .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 8px; width: 90%; max-width: 500px; margin: 0 auto; }
-      .input-wrapper-col { flex-direction: column; align-items: center; gap: 10px; }
+      
+      /* Layout Berdampingan (Split) untuk Input dan Hasil Podium */
+      .podium-split { 
+        display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 900px; 
+        justify-content: center; flex-wrap: wrap; margin: 0 auto; 
+      }
+      .podium-col { 
+        display: flex; flex-direction: column; align-items: center; gap: 10px; 
+        flex: 1; min-width: 280px; 
+      }
       
       .input-bip { 
         background: rgba(255, 255, 255, 0.9); border: none; border-radius: 15px; 
@@ -45,7 +54,7 @@
         text-transform: uppercase; font-family: 'Montserrat', sans-serif; 
         box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: 0.3s; width: 100%; box-sizing: border-box;
       }
-      .input-bip::placeholder { color: rgba(0, 0, 0, 0.5); font-size: clamp(14px, 3.5vmin, 18px); font-weight: 800; }
+      .input-bip::placeholder { color: rgba(0, 0, 0, 0.5); font-size: clamp(14px, 3.5vmin, 16px); font-weight: 800; }
       .input-bip:focus { background: #FFFFFF; box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
 
       .go-btn { 
@@ -58,7 +67,7 @@
       
       .hint-text { font-size: clamp(11px, 2.5vmin, 14px); margin-top: 10px; color: #000000; font-weight: 900; }
 
-      #result-container, #podium-result-container { display: none; width: 100%; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+      #result-container, #podium-result-container { display: none; width: 100%; flex-direction: column; gap: 12px; align-items: center; }
       
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 10px; }
       .result-label { font-size: clamp(11px, 2.5vmin, 15px); font-weight: 900; color: #000000; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
@@ -68,16 +77,16 @@
       }
 
       .main-kategori-label {
-        font-size: clamp(20px, 5.5vmin, 32px); font-weight: 900; color: #FFFFFF; 
-        text-shadow: 2px 3px 5px rgba(0,0,0,0.8); margin-bottom: 15px; 
+        font-size: clamp(18px, 4.5vmin, 26px); font-weight: 900; color: #FFFFFF; 
+        text-shadow: 2px 3px 5px rgba(0,0,0,0.8); margin-bottom: 10px; 
         text-transform: uppercase; letter-spacing: 2px;
-        background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 10px; border: 2px solid #FFF;
+        background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 10px; border: 2px solid #FFF; width: fit-content; margin: 0 auto 15px auto;
       }
 
       .glass-box {
         background: linear-gradient(90deg, #42df9a 0%, #68d8e3 100%); border: 2px solid #FFFFFF;
         border-radius: 10px; padding: 5px 25px; width: fit-content; max-width: 95%;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.3); word-wrap: break-word;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3); word-wrap: break-word; text-align: center;
       }
 
       .result-bip { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 12vmin, 90px); margin: 0; line-height: 1.1; letter-spacing: 3px; color: #FFFFFF; text-shadow: 3px 4px 5px rgba(0,0,0,0.6); }
@@ -118,15 +127,29 @@
         <div class="hint-text">isi ngana pe nomor bip dulu e...</div>
       </div>
 
-      <!-- MODE PODIUM -->
+      <!-- MODE PODIUM BERDAMPINGAN (6 INPUT) -->
       <div id="podium-input-container">
-        <div class="hint-text" style="margin-top: 0; margin-bottom: 10px; color: #fff; text-shadow: 1px 1px 3px #000;">ISI NOMOR BIP UNTUK PODIUM</div>
-        <div class="input-wrapper input-wrapper-col">
-          <input type="text" id="inputPodium1" class="input-bip" placeholder="BIP PODIUM 1" inputmode="numeric">
-          <input type="text" id="inputPodium2" class="input-bip" placeholder="BIP PODIUM 2" inputmode="numeric">
-          <input type="text" id="inputPodium3" class="input-bip" placeholder="BIP PODIUM 3" inputmode="numeric">
-          <button class="go-btn" style="width: 100%; margin-top: 5px;" onclick="jalankanPencarianPodium()">GO PODIUM</button>
+        <div class="hint-text" style="margin-top: 0; margin-bottom: 15px; color: #fff; text-shadow: 1px 1px 3px #000; font-size: clamp(14px, 3.5vmin, 18px);">ISI NOMOR BIP UNTUK PODIUM</div>
+        
+        <div class="podium-split">
+          <!-- KOLOM KIRI: LAKI-LAKI -->
+          <div class="podium-col">
+            <div class="main-kategori-label" style="font-size: clamp(14px, 3.5vmin, 18px); margin-bottom: 5px;">LAKI-LAKI</div>
+            <input type="text" id="inputPodiumL1" class="input-bip" placeholder="PODIUM 1 LAKI-LAKI" inputmode="numeric">
+            <input type="text" id="inputPodiumL2" class="input-bip" placeholder="PODIUM 2 LAKI-LAKI" inputmode="numeric">
+            <input type="text" id="inputPodiumL3" class="input-bip" placeholder="PODIUM 3 LAKI-LAKI" inputmode="numeric">
+          </div>
+          
+          <!-- KOLOM KANAN: PEREMPUAN -->
+          <div class="podium-col">
+            <div class="main-kategori-label" style="font-size: clamp(14px, 3.5vmin, 18px); margin-bottom: 5px;">PEREMPUAN</div>
+            <input type="text" id="inputPodiumP1" class="input-bip" placeholder="PODIUM 1 PEREMPUAN" inputmode="numeric">
+            <input type="text" id="inputPodiumP2" class="input-bip" placeholder="PODIUM 2 PEREMPUAN" inputmode="numeric">
+            <input type="text" id="inputPodiumP3" class="input-bip" placeholder="PODIUM 3 PEREMPUAN" inputmode="numeric">
+          </div>
         </div>
+        
+        <button class="go-btn" style="width: 90%; max-width: 500px; margin-top: 20px;" onclick="jalankanPencarianPodium()">GO PODIUM</button>
       </div>
 
       <div id="loading" class="loading">Sabar e, kita da cari ngana pe data...</div>
@@ -150,7 +173,7 @@
         </div>
       </div>
 
-      <!-- HASIL PODIUM -->
+      <!-- HASIL PODIUM BERDAMPINGAN -->
       <div id="podium-result-wrapper" style="display: none; width: 100%;">
         <div id="podium-result-container"></div>
       </div>
@@ -221,21 +244,25 @@
 
       async function jalankanPencarianPodium() {
         try {
-          const input1 = document.getElementById('inputPodium1');
-          const input2 = document.getElementById('inputPodium2');
-          const input3 = document.getElementById('inputPodium3');
-
-          const bips = [
-            input1 ? input1.value.trim() : "",
-            input2 ? input2.value.trim() : "",
-            input3 ? input3.value.trim() : ""
+          // Kumpulkan semua ID input (Laki-laki 1-3, Perempuan 1-3)
+          const inputIDs = [
+            'inputPodiumL1', 'inputPodiumL2', 'inputPodiumL3',
+            'inputPodiumP1', 'inputPodiumP2', 'inputPodiumP3'
           ];
+          
+          const bips = inputIDs.map(id => {
+            const el = document.getElementById(id);
+            return el ? el.value.trim() : "";
+          });
 
+          // Batalkan jika semuanya kosong
           if (bips.every(b => b === "")) return;
 
-          if (input1) input1.blur();
-          if (input2) input2.blur();
-          if (input3) input3.blur();
+          // Tutup keyboard
+          inputIDs.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.blur();
+          });
           
           document.getElementById('podium-input-container').style.display = 'none';
           document.getElementById('not-found').style.display = 'none';
@@ -243,6 +270,7 @@
           document.getElementById('loading').style.display = 'block';
           document.getElementById('btnReset').style.display = 'none';
 
+          // Fetch API sekaligus
           const fetchPromises = bips.map(bip => {
             if (!bip) return Promise.resolve(null);
             return fetch(API_URL + "?bip=" + encodeURIComponent(bip))
@@ -255,52 +283,72 @@
           document.getElementById('loading').style.display = 'none';
           document.getElementById('btnReset').style.display = 'block';
           
-          // Cari kategori utama berdasarkan data pertama yang ditemukan
-          let mainKategori = "";
-          for (let data of results) {
-            if (data && data.found) {
-              let gender = String(data.jk || "").toUpperCase();
-              if (gender === "L" || gender === "LAKI-LAKI" || gender.includes("LAKI")) {
-                mainKategori = "KATEGORI LAKI-LAKI";
-              } else if (gender === "P" || gender === "PEREMPUAN" || gender.includes("PEREMPUAN")) {
-                mainKategori = "KATEGORI PEREMPUAN";
-              } else if (gender !== "") {
-                mainKategori = "KATEGORI " + gender;
-              }
-              break; 
+          let htmlLaki = '';
+          let htmlPerempuan = '';
+          let hasAnyData = false;
+
+          // Loop untuk Laki-laki (Index 0, 1, 2)
+          for(let i = 0; i < 3; i++) {
+            let data = results[i];
+            if (data) {
+              hasAnyData = true;
+              let rank = i + 1;
+              let nomorBip = bips[i].toUpperCase();
+              let namaPeserta = data.found ? String(data.nama || "-").toUpperCase() : "TIDAK DITEMUKAN";
+              htmlLaki += `
+                <div class="result-group">
+                  <div class="podium-label">PODIUM ${rank} - BIP: ${nomorBip}</div>
+                  <div class="glass-box result-nama">NAMA: ${namaPeserta}</div>
+                </div>
+              `;
             }
           }
 
-          let htmlResult = '';
-          
-          // Cetak Header Kategori di paling atas jika ditemukan
-          if (mainKategori !== "") {
-            htmlResult += `<div class="main-kategori-label">${mainKategori}</div>`;
+          // Loop untuk Perempuan (Index 3, 4, 5)
+          for(let i = 3; i < 6; i++) {
+            let data = results[i];
+            if (data) {
+              hasAnyData = true;
+              let rank = (i - 3) + 1;
+              let nomorBip = bips[i].toUpperCase();
+              let namaPeserta = data.found ? String(data.nama || "-").toUpperCase() : "TIDAK DITEMUKAN";
+              htmlPerempuan += `
+                <div class="result-group">
+                  <div class="podium-label">PODIUM ${rank} - BIP: ${nomorBip}</div>
+                  <div class="glass-box result-nama">NAMA: ${namaPeserta}</div>
+                </div>
+              `;
+            }
           }
-          
-          results.forEach((data, index) => {
-            if (!data) return; 
-            
-            let rank = index + 1;
-            let nomorBip = bips[index].toUpperCase();
-            let namaPeserta = data.found ? String(data.nama || "-").toUpperCase() : "TIDAK DITEMUKAN";
 
-            // Judul podium sekarang tanpa embel-embel kategori
-            let titleTeks = `PODIUM ${rank} - BIP: ${nomorBip}`;
-
-            htmlResult += `
-              <div class="result-group">
-                <div class="podium-label">${titleTeks}</div>
-                <div class="glass-box result-nama">NAMA: ${namaPeserta}</div>
-              </div>
-            `;
-          });
-
-          if (htmlResult === "") {
+          if (!hasAnyData) {
              document.getElementById('not-found').style.display = 'block';
           } else {
-             document.getElementById('podium-result-container').innerHTML = htmlResult;
-             document.getElementById('podium-result-container').style.display = 'flex';
+             // Gabungkan jadi HTML berdampingan
+             let finalHtml = `<div class="podium-split">`;
+             
+             if (htmlLaki !== '') {
+               finalHtml += `
+                 <div class="podium-col">
+                   <div class="main-kategori-label">KATEGORI LAKI-LAKI</div>
+                   ${htmlLaki}
+                 </div>
+               `;
+             }
+
+             if (htmlPerempuan !== '') {
+               finalHtml += `
+                 <div class="podium-col">
+                   <div class="main-kategori-label">KATEGORI PEREMPUAN</div>
+                   ${htmlPerempuan}
+                 </div>
+               `;
+             }
+
+             finalHtml += `</div>`;
+             
+             document.getElementById('podium-result-container').innerHTML = finalHtml;
+             document.getElementById('podium-result-container').style.display = 'block'; // Pastikan container tampil
              document.getElementById('podium-result-wrapper').style.display = 'block';
           }
 
@@ -323,12 +371,12 @@
           document.getElementById('input-container').style.display = 'block';
           document.getElementById('inputBIP').focus(); 
         } else {
-          const p1 = document.getElementById('inputPodium1');
-          const p2 = document.getElementById('inputPodium2');
-          const p3 = document.getElementById('inputPodium3');
-          if(p1) p1.value = "";
-          if(p2) p2.value = "";
-          if(p3) p3.value = "";
+          // Bersihkan keenam input podium
+          ['inputPodiumL1','inputPodiumL2','inputPodiumL3',
+           'inputPodiumP1','inputPodiumP2','inputPodiumP3'].forEach(id => {
+             let el = document.getElementById(id);
+             if(el) el.value = "";
+          });
           
           document.getElementById('podium-result-wrapper').style.display = 'none';
           document.getElementById('podium-input-container').style.display = 'block';
