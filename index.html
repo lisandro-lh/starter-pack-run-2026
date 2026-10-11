@@ -10,77 +10,89 @@
         margin: 0; padding: 0; height: 100vh; height: 100dvh; 
         background-color: #10a0e3; 
         
-        /* 1. GAMBAR UNTUK LAPTOP / TV (LAYAR MENDATAR) */
+        /* GAMBAR UNTUK LAPTOP / TV (LAYAR MENDATAR) */
         background-image: url('https://i.ibb.co.com/bRmsMjjY/1.png');
         background-size: contain; background-position: center top; background-repeat: no-repeat;
         font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column;
         justify-content: flex-start; align-items: center; overflow: hidden;
       }
       
-      /* 2. GAMBAR KHUSUS UNTUK HP & TABLET BERDIRI (PORTRAIT) */
+      /* GAMBAR KHUSUS UNTUK HP & TABLET BERDIRI (PORTRAIT) */
       @media screen and (orientation: portrait) { 
         body { 
-          /* MENGGUNAKAN 100% 100% AGAR GAMBAR BAWAH (PETA/TANGGAL) TIDAK TERPOTONG SAMA SEKALI */
           background-size: 100% 100%; 
           background-image: url('https://i.ibb.co.com/1ttvpmKF/2.png'); 
         } 
       }
 
-      /* Posisi Container Utama */
-      .content-wrapper { text-align: center; width: 100%; padding: 0 5%; box-sizing: border-box; margin-top: 36vh; }
+      /* Posisi Container Utama - Disesuaikan agar pas di tengah dan tidak menutupi atas */
+      .content-wrapper { 
+        text-align: center; width: 100%; padding: 0 5%; box-sizing: border-box; 
+        margin-top: 38vh; /* Jarak aman dari gambar atas */
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+      }
       @media screen and (orientation: portrait) { 
-        /* MENURUNKAN TULISAN KE BAWAH AGAR TIDAK MENUTUPI LOGO HIBUALAMO */
-        .content-wrapper { margin-top: 34vh; } 
+        .content-wrapper { margin-top: 35vh; } 
       }
 
-      #input-container { display: block; margin-top: 5vh; }
-      .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 10px; width: 90%; max-width: 550px; margin: 0 auto; }
+      #input-container { display: block; margin-top: 2vh; width: 100%; }
+      .input-wrapper { display: flex; justify-content: center; align-items: stretch; gap: 8px; width: 90%; max-width: 500px; margin: 0 auto; }
       
-      /* Ukuran Input Fleksibel */
-      .input-bip { background: rgba(255, 255, 255, 0.85); border: none; border-radius: 20px; color: #000000; font-size: clamp(18px, 4vw, 30px); font-weight: 900; text-align: center; padding: 15px 20px; flex: 1; outline: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-      .input-bip::placeholder { color: rgba(0, 0, 0, 0.6); font-size: clamp(14px, 3vw, 22px); font-weight: 800; }
-      .input-bip:focus { background: rgba(255, 255, 255, 1); }
+      /* Input Tanpa Border & Teks Hitam */
+      .input-bip { 
+        background: rgba(255, 255, 255, 0.9); border: none; border-radius: 15px; 
+        color: #000000; font-size: clamp(16px, 3.5vw, 24px); font-weight: 900; 
+        text-align: center; padding: 12px 15px; flex: 1; outline: none; 
+        text-transform: uppercase; font-family: 'Montserrat', sans-serif; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: 0.3s; 
+      }
+      .input-bip::placeholder { color: rgba(0, 0, 0, 0.5); font-size: clamp(14px, 3vw, 18px); font-weight: 800; }
+      .input-bip:focus { background: #FFFFFF; box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
 
-      .go-btn { background: #FFFFFF; border: none; border-radius: 20px; color: #000000; font-size: clamp(16px, 4vw, 25px); font-weight: 900; padding: 0 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; }
-      .go-btn:hover { background: #E2E8F0; }
+      .go-btn { 
+        background: #FFFFFF; border: none; border-radius: 15px; color: #000000; 
+        font-size: clamp(14px, 3vw, 20px); font-weight: 900; padding: 0 20px; 
+        cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: 0.3s; 
+        font-family: 'Montserrat', sans-serif; 
+      }
+      .go-btn:hover { background: #F1F5F9; }
       
-      .hint-text { font-size: clamp(12px, 2.5vw, 16px); margin-top: 15px; color: #000000; font-weight: 900; }
+      .hint-text { font-size: clamp(11px, 2.5vw, 14px); margin-top: 10px; color: #000000; font-weight: 900; }
 
-      #result-container { display: none; width: 100%; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+      #result-container { display: none; width: 100%; display: flex; flex-direction: column; gap: 12px; align-items: center; }
       
-      /* Styling untuk grup dan label (NOMOR PESERTA, NAMA, JK) */
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; }
-      .result-label { font-size: clamp(12px, 3vw, 18px); font-weight: 900; color: #000000; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+      .result-label { font-size: clamp(11px, 2.5vw, 15px); font-weight: 900; color: #000000; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
       
-      /* Kotak transparan fleksibel (Glassmorphism) */
+      /* Kotak transparan fleksibel Tanpa Border */
       .glass-box {
         background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         border: none;
         border-radius: 12px;
-        padding: 8px 30px;
+        padding: 5px 25px;
         width: fit-content; 
         max-width: 95%;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.25), inset 0 0 10px rgba(255,255,255,0.5);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         color: #000000;
         word-wrap: break-word;
       }
       
-      /* Border khusus nomor peserta dihilangkan */
-      .box-cyan { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255,255,255,0.5); }
+      .box-cyan { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); }
 
       /* ========================================================
-         UKURAN TEKS SUPER FLEKSIBEL (HP -> TABLET -> LAPTOP)
+         UKURAN TEKS PROPORSIONAL (HP -> TABLET -> LAPTOP)
          ======================================================== */
-      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(50px, 10vw, 110px); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: 2px; color: #000000; }
-      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(20px, 5vw, 55px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; color: #000000; }
-      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(14px, 3.5vw, 35px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; color: #000000; }
+      /* Diperbarui agar tidak terlalu besar di layar laptop namun tetap jelas di HP */
+      .result-bip { font-family: 'Montserrat', sans-serif; font-size: clamp(35px, 8vw, 85px); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: 2px; color: #000000; }
+      .result-nama { font-family: 'Montserrat', sans-serif; font-size: clamp(16px, 4.5vw, 40px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; color: #000000; }
+      .result-jk { font-family: 'Montserrat', sans-serif; font-size: clamp(12px, 3vw, 24px); font-weight: 900; margin: 0; text-transform: uppercase; line-height: 1.2; color: #000000; }
 
-      .loading, .not-found { font-size: clamp(16px, 3vw, 24px); font-weight: 900; margin-top: 40px; display: none; letter-spacing: 1px; color: #000000; }
+      .loading, .not-found { font-size: clamp(14px, 3vw, 20px); font-weight: 900; margin-top: 30px; display: none; letter-spacing: 1px; color: #000000; }
 
-      .reset-btn { position: absolute; bottom: clamp(20px, 4vh, 40px); right: clamp(20px, 4vw, 40px); background: #FFFFFF; border: none; border-radius: 12px; color: #000000; padding: 10px 20px; font-size: clamp(12px, 2vw, 16px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
-      .reset-btn:hover { background: #E2E8F0; }
+      .reset-btn { position: absolute; bottom: clamp(15px, 3vh, 30px); right: clamp(15px, 3vw, 30px); background: #FFFFFF; border: none; border-radius: 10px; color: #000000; padding: 8px 15px; font-size: clamp(11px, 2vw, 14px); font-weight: 800; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; font-family: 'Montserrat', sans-serif; z-index: 10; }
+      .reset-btn:hover { background: #F1F5F9; }
     </style>
   </head>
   <body>
@@ -99,7 +111,7 @@
       <div id="loading" class="loading">Sabar e, kita da cari ngana pe data...</div>
       <div id="not-found" class="not-found">DATA TIDAK DITEMUKAN</div>
 
-      <div id="result-wrapper" style="display: none;">
+      <div id="result-wrapper" style="display: none; width: 100%;">
         <div id="result-container">
           
           <div class="result-group">
