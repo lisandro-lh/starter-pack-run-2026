@@ -72,7 +72,7 @@
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 5px; }
       
       .podium-label {
-        font-size: clamp(12px, 3vmin, 16px); font-weight: 900; color: #FFFFFF; text-shadow: 1px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px;
+        font-size: clamp(16px, 4vmin, 20px); font-weight: 900; color: #FFF200; text-shadow: 1px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; letter-spacing: 1px;
       }
 
       /* Style Kategori disesuaikan dengan gambar referensi */
@@ -84,13 +84,33 @@
         width: fit-content; margin: 0 auto 10px auto; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       }
 
+      /* Teks Ucapan Selamat Podium */
+      .podium-greeting {
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(14px, 3.5vmin, 18px);
+        font-weight: 800;
+        color: #FFFFFF;
+        text-align: center;
+        margin-bottom: 25px;
+        text-shadow: 1px 2px 4px rgba(0,0,0,0.6);
+        background: rgba(0, 0, 0, 0.25);
+        padding: 12px 25px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        backdrop-filter: blur(2px);
+      }
+
       .glass-box {
         background: linear-gradient(90deg, #42df9a 0%, #68d8e3 100%); border: 2px solid #FFFFFF;
         border-radius: 8px; padding: 5px 15px; width: 100%; max-width: 380px; box-sizing: border-box;
         box-shadow: 0 6px 15px rgba(0,0,0,0.3); word-wrap: break-word; text-align: center;
       }
 
-      /* STYLE BARU UNTUK GREETING NORMAL MODE */
+      /* STYLE UNTUK GREETING NORMAL MODE */
       .greeting-box {
         padding: 25px 20px;
         display: flex;
@@ -109,7 +129,7 @@
       .highlight-name {
         font-family: 'Bebas Neue', sans-serif;
         font-size: clamp(45px, 11vmin, 75px);
-        color: #FFF200; /* Warna kuning cerah agar menarik */
+        color: #FFF200; 
         text-shadow: 3px 4px 5px rgba(0,0,0,0.6);
         letter-spacing: 2px;
         display: block;
@@ -176,7 +196,7 @@
         <div class="podium-split">
           <!-- KOLOM KIRI (Default: LAKI-LAKI) -->
           <div class="podium-col">
-            <div class="main-kategori-label">KATEGORI LAKI-LAKI</div>
+            <div class="main-kategori-label">🏃‍♂️ LAKI-LAKI</div>
             <input type="text" id="inputPodiumL1" class="input-bip" placeholder="PODIUM 1 KIRI" inputmode="numeric">
             <input type="text" id="inputPodiumL2" class="input-bip" placeholder="PODIUM 2 KIRI" inputmode="numeric">
             <input type="text" id="inputPodiumL3" class="input-bip" placeholder="PODIUM 3 KIRI" inputmode="numeric">
@@ -184,7 +204,7 @@
           
           <!-- KOLOM KANAN (Default: PEREMPUAN) -->
           <div class="podium-col">
-            <div class="main-kategori-label">KATEGORI PEREMPUAN</div>
+            <div class="main-kategori-label">🏃‍♀️ PEREMPUAN</div>
             <input type="text" id="inputPodiumP1" class="input-bip" placeholder="PODIUM 1 KANAN" inputmode="numeric">
             <input type="text" id="inputPodiumP2" class="input-bip" placeholder="PODIUM 2 KANAN" inputmode="numeric">
             <input type="text" id="inputPodiumP3" class="input-bip" placeholder="PODIUM 3 KANAN" inputmode="numeric">
@@ -201,7 +221,7 @@
       <div id="result-wrapper" style="display: none; width: 100%;">
         <div id="result-container">
           <div class="glass-box greeting-box">
-            <div class="greeting-hai">HAI, <span id="result-nama" class="highlight-name">NAMA PESERTA</span></div>
+            <div class="greeting-hai">Haloo, <span id="result-nama" class="highlight-name">NAMA PESERTA</span></div>
             <div class="greeting-msg">LET'S RUN FOR FUN AT <span class="event-name">HIBUALAMO ECO FUN RUN 2026</span></div>
           </div>
         </div>
@@ -260,9 +280,7 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('btnReset').style.display = 'block'; 
             if (data.found) {
-              // Update nama peserta di layout baru
               document.getElementById('result-nama').innerText = String(data.nama || "-").toUpperCase() + "!";
-              
               document.getElementById('result-wrapper').style.display = 'block';
               document.getElementById('result-container').style.display = 'flex';
             } else {
@@ -316,30 +334,32 @@
           let htmlKiri = '';
           let htmlKanan = '';
           let hasAnyData = false;
+          
+          const medals = ['🥇', '🥈', '🥉'];
 
           // ==========================================
           // DETEKSI KATEGORI OTOMATIS BERDASARKAN DATA
           // ==========================================
           
-          // Deteksi Kategori Kiri (Index 0, 1, 2)
-          let leftKategori = "KATEGORI LAKI-LAKI"; // Default
+          // Deteksi Kategori Kiri
+          let leftKategori = "🏃‍♂️ LAKI-LAKI"; 
           for(let i = 0; i < 3; i++) {
             if(results[i] && results[i].found && results[i].jk) {
               let jk = String(results[i].jk).toUpperCase();
-              if(jk === "P" || jk.includes("PEREMPUAN")) leftKategori = "KATEGORI PEREMPUAN";
-              else if(jk === "L" || jk.includes("LAKI")) leftKategori = "KATEGORI LAKI-LAKI";
-              break; // Kategori ditemukan, hentikan pencarian kolom ini
+              if(jk === "P" || jk.includes("PEREMPUAN")) leftKategori = "🏃‍♀️ PEREMPUAN";
+              else if(jk === "L" || jk.includes("LAKI")) leftKategori = "🏃‍♂️ LAKI-LAKI";
+              break; 
             }
           }
 
-          // Deteksi Kategori Kanan (Index 3, 4, 5)
-          let rightKategori = "KATEGORI PEREMPUAN"; // Default
+          // Deteksi Kategori Kanan
+          let rightKategori = "🏃‍♀️ PEREMPUAN"; 
           for(let i = 3; i < 6; i++) {
             if(results[i] && results[i].found && results[i].jk) {
               let jk = String(results[i].jk).toUpperCase();
-              if(jk === "P" || jk.includes("PEREMPUAN")) rightKategori = "KATEGORI PEREMPUAN";
-              else if(jk === "L" || jk.includes("LAKI")) rightKategori = "KATEGORI LAKI-LAKI";
-              break; // Kategori ditemukan, hentikan pencarian kolom ini
+              if(jk === "P" || jk.includes("PEREMPUAN")) rightKategori = "🏃‍♀️ PEREMPUAN";
+              else if(jk === "L" || jk.includes("LAKI")) rightKategori = "🏃‍♂️ LAKI-LAKI";
+              break; 
             }
           }
 
@@ -352,13 +372,13 @@
             let data = results[i];
             if (data) {
               hasAnyData = true;
-              let rank = i + 1;
+              let medal = medals[i];
               let nomorBip = bips[i].toUpperCase();
               let namaPeserta = data.found ? String(data.nama || "-").toUpperCase() : "TIDAK DITEMUKAN";
               htmlKiri += `
                 <div class="result-group">
-                  <div class="podium-label">PODIUM ${rank} - BIP: ${nomorBip}</div>
-                  <div class="glass-box result-nama">: ${namaPeserta}</div>
+                  <div class="podium-label">${medal} BIP: ${nomorBip}</div>
+                  <div class="glass-box result-nama">${namaPeserta}</div>
                 </div>
               `;
             }
@@ -369,13 +389,13 @@
             let data = results[i];
             if (data) {
               hasAnyData = true;
-              let rank = (i - 3) + 1;
+              let medal = medals[i - 3]; // index 0, 1, 2
               let nomorBip = bips[i].toUpperCase();
               let namaPeserta = data.found ? String(data.nama || "-").toUpperCase() : "TIDAK DITEMUKAN";
               htmlKanan += `
                 <div class="result-group">
-                  <div class="podium-label">PODIUM ${rank} - BIP: ${nomorBip}</div>
-                  <div class="glass-box result-nama">: ${namaPeserta}</div>
+                  <div class="podium-label">${medal} BIP: ${nomorBip}</div>
+                  <div class="glass-box result-nama">${namaPeserta}</div>
                 </div>
               `;
             }
@@ -384,8 +404,13 @@
           if (!hasAnyData) {
              document.getElementById('not-found').style.display = 'block';
           } else {
-             // Gabungkan jadi HTML berdampingan
-             let finalHtml = `<div class="podium-split">`;
+             // Tambahkan teks greeting dan gabungkan hasil
+             let finalHtml = `
+               <div class="podium-greeting">
+                 🎉 Selamat ya atas kemenangannya!<br>Sampai bertemu di kesempatan selanjutnya... 🏅
+               </div>
+               <div class="podium-split">
+             `;
              
              if (htmlKiri !== '') {
                finalHtml += `
