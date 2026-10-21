@@ -338,30 +338,10 @@
           const medals = ['🥇', '🥈', '🥉'];
 
           // ==========================================
-          // DETEKSI KATEGORI OTOMATIS BERDASARKAN DATA
+          // KATEGORI PODIUM (DIKUNCI / STATIC)
           // ==========================================
-          
-          // Deteksi Kategori Kiri
           let leftKategori = "🏃‍♂️ LAKI-LAKI"; 
-          for(let i = 0; i < 3; i++) {
-            if(results[i] && results[i].found && results[i].jk) {
-              let jk = String(results[i].jk).toUpperCase();
-              if(jk === "P" || jk.includes("PEREMPUAN")) leftKategori = "🏃‍♀️ PEREMPUAN";
-              else if(jk === "L" || jk.includes("LAKI")) leftKategori = "🏃‍♂️ LAKI-LAKI";
-              break; 
-            }
-          }
-
-          // Deteksi Kategori Kanan
           let rightKategori = "🏃‍♀️ PEREMPUAN"; 
-          for(let i = 3; i < 6; i++) {
-            if(results[i] && results[i].found && results[i].jk) {
-              let jk = String(results[i].jk).toUpperCase();
-              if(jk === "P" || jk.includes("PEREMPUAN")) rightKategori = "🏃‍♀️ PEREMPUAN";
-              else if(jk === "L" || jk.includes("LAKI")) rightKategori = "🏃‍♂️ LAKI-LAKI";
-              break; 
-            }
-          }
 
           // ==========================================
           // RENDER DATA PODIUM
