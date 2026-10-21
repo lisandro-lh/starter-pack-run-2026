@@ -70,7 +70,6 @@
       #result-container, #podium-result-container { display: none; width: 100%; flex-direction: column; gap: 12px; align-items: center; }
       
       .result-group { display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 5px; }
-      .result-label { font-size: clamp(11px, 2.5vmin, 15px); font-weight: 900; color: #000000; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
       
       .podium-label {
         font-size: clamp(12px, 3vmin, 16px); font-weight: 900; color: #FFFFFF; text-shadow: 1px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px;
@@ -91,9 +90,50 @@
         box-shadow: 0 6px 15px rgba(0,0,0,0.3); word-wrap: break-word; text-align: center;
       }
 
-      .result-bip { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 12vmin, 90px); margin: 0; line-height: 1.1; letter-spacing: 3px; color: #FFFFFF; text-shadow: 3px 4px 5px rgba(0,0,0,0.6); }
+      /* STYLE BARU UNTUK GREETING NORMAL MODE */
+      .greeting-box {
+        padding: 25px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 450px;
+      }
+      .greeting-hai {
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(20px, 5vmin, 28px);
+        font-weight: 900;
+        color: #FFFFFF;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        line-height: 1.1;
+      }
+      .highlight-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(45px, 11vmin, 75px);
+        color: #FFF200; /* Warna kuning cerah agar menarik */
+        text-shadow: 3px 4px 5px rgba(0,0,0,0.6);
+        letter-spacing: 2px;
+        display: block;
+        margin-top: 5px;
+        line-height: 1;
+      }
+      .greeting-msg {
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(14px, 3.5vmin, 18px);
+        font-weight: 800;
+        color: #FFFFFF;
+        text-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+        line-height: 1.4;
+      }
+      .event-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(26px, 6.5vmin, 35px);
+        letter-spacing: 1px;
+        color: #FFFFFF;
+        display: block;
+        margin-top: 5px;
+      }
+
       .result-nama { font-family: 'Bebas Neue', sans-serif; font-size: clamp(24px, 6vmin, 40px); margin: 0; text-transform: uppercase; line-height: 1.1; letter-spacing: 1px; color: #FFFFFF; text-shadow: 2px 3px 5px rgba(0,0,0,0.6); }
-      .result-jk { font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 4.5vmin, 30px); margin: 0; text-transform: uppercase; line-height: 1.2; letter-spacing: 1px; color: #FFFFFF; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
 
       .loading, .not-found { font-size: clamp(14px, 3.5vmin, 20px); font-weight: 900; margin-top: 30px; display: none; letter-spacing: 1px; color: #000000; }
 
@@ -157,20 +197,12 @@
       <div id="loading" class="loading">Sabar e, kita da cari ngana pe data...</div>
       <div id="not-found" class="not-found">DATA TIDAK DITEMUKAN</div>
 
-      <!-- HASIL NORMAL -->
+      <!-- HASIL NORMAL BENTUK GREETING BARU -->
       <div id="result-wrapper" style="display: none; width: 100%;">
         <div id="result-container">
-          <div class="result-group">
-            <div class="result-label">NUMBER</div>
-            <div id="result-bip" class="glass-box result-bip">0000</div>
-          </div>
-          <div class="result-group">
-            <div class="result-label">NAME</div>
-            <div id="result-nama" class="glass-box result-nama">NAMA PESERTA</div>
-          </div>
-          <div class="result-group">
-            <div class="result-label">GENDER</div>
-            <div id="result-jk" class="glass-box result-jk">JENIS KELAMIN</div>
+          <div class="glass-box greeting-box">
+            <div class="greeting-hai">HAI, <span id="result-nama" class="highlight-name">NAMA PESERTA</span></div>
+            <div class="greeting-msg">LET'S RUN FOR FUN AT <span class="event-name">HIBUALAMO ECO FUN RUN 2026</span></div>
           </div>
         </div>
       </div>
@@ -228,9 +260,9 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('btnReset').style.display = 'block'; 
             if (data.found) {
-              document.getElementById('result-bip').innerText = bip.toUpperCase();
-              document.getElementById('result-nama').innerText = String(data.nama || "-").toUpperCase();
-              document.getElementById('result-jk').innerText = String(data.jk || "-").toUpperCase();
+              // Update nama peserta di layout baru
+              document.getElementById('result-nama').innerText = String(data.nama || "-").toUpperCase() + "!";
+              
               document.getElementById('result-wrapper').style.display = 'block';
               document.getElementById('result-container').style.display = 'flex';
             } else {
